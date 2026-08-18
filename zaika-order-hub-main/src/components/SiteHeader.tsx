@@ -9,6 +9,7 @@ const NAV = [
   { to: "/order", label: "Order" },
   { to: "/reviews", label: "Reviews" },
   { to: "/contact", label: "Contact" },
+  { to: "/terms-and-conditions", label: "Terms & Conditions" },
 ] as const;
 
 export function SiteHeader() {
