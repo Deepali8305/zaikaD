@@ -46,6 +46,14 @@ export function SiteFooter() {
                 Contact Us
               </Link>
             </li>
+            <li>
+              <Link
+                to="/terms-and-conditions"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                Terms &amp; Conditions
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

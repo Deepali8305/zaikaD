@@ -65,6 +65,7 @@ function OrderPage() {
   const [time, setTime] = useState("");
   const [payment, setPayment] = useState<Payment>("UPI_ONLINE");
   const [instructions, setInstructions] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
   const [showConfirm, setShowConfirm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -104,6 +105,7 @@ function OrderPage() {
       const timingError = validateTiming({ orderType, date: effectiveDate, time }, now);
       if (timingError) list.push(timingError);
     }
+    if (!acceptedTerms) list.push("Please accept the Terms & Conditions to continue.");
     return list;
   }
 
@@ -450,6 +452,31 @@ function OrderPage() {
               ))}
             </ul>
           )}
+
+          <fieldset className="card-surface space-y-3 p-5">
+            <legend className="px-1 text-sm font-semibold uppercase tracking-wide">
+              Agreement
+            </legend>
+            <label className="flex items-start gap-3 text-sm">
+              <input
+                type="checkbox"
+                name="acceptedTerms"
+                checked={acceptedTerms}
+                onChange={(e) => setAcceptedTerms(e.target.checked)}
+                className="mt-0.5"
+              />
+              <span>
+                I agree to the{" "}
+                <Link
+                  to="/terms-and-conditions"
+                  className="font-medium text-primary underline underline-offset-2 hover:opacity-80"
+                >
+                  Terms &amp; Conditions
+                </Link>
+                .
+              </span>
+            </label>
+          </fieldset>
 
           <button
             type="submit"

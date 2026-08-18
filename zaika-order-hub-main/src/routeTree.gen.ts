@@ -16,6 +16,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as OrderRouteImport } from './routes/order'
 import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const ReviewsRoute = ReviewsRouteImport.update({
   path: '/reviews',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
+  id: '/terms-and-conditions',
+  path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/menu': typeof MenuRoute
   '/order': typeof OrderRoute
   '/reviews': typeof ReviewsRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/menu': typeof MenuRoute
   '/order': typeof OrderRoute
   '/reviews': typeof ReviewsRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/menu': typeof MenuRoute
   '/order': typeof OrderRoute
   '/reviews': typeof ReviewsRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/menu'
     | '/order'
     | '/reviews'
+    | '/terms-and-conditions'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/menu'
     | '/order'
     | '/reviews'
+    | '/terms-and-conditions'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/menu'
     | '/order'
     | '/reviews'
+    | '/terms-and-conditions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   MenuRoute: typeof MenuRoute
   OrderRoute: typeof OrderRoute
   ReviewsRoute: typeof ReviewsRoute
+  TermsAndConditionsRoute: typeof TermsAndConditionsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms-and-conditions': {
+      id: '/terms-and-conditions'
+      path: '/terms-and-conditions'
+      fullPath: '/terms-and-conditions'
+      preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   MenuRoute: MenuRoute,
   OrderRoute: OrderRoute,
   ReviewsRoute: ReviewsRoute,
+  TermsAndConditionsRoute: TermsAndConditionsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
