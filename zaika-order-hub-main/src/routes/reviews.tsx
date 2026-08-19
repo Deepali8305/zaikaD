@@ -6,15 +6,15 @@ import { sendReviewToSheet } from "@/lib/google-sheets";
 export const Route = createFileRoute("/reviews")({
   head: () => ({
     meta: [
-      { title: "Reviews — Zaika Cloud Kitchen" },
+      { title: "Reviews — Chaska" },
       {
         name: "description",
-        content: "Read and share reviews for Zaika Cloud Kitchen. Tell us about your experience!",
+        content: "Read and share reviews for Chaska. Tell us about your experience!",
       },
-      { property: "og:title", content: "Reviews — Zaika Cloud Kitchen" },
+      { property: "og:title", content: "Reviews — Chaska" },
       {
         property: "og:description",
-        content: "Share your experience with Zaika Cloud Kitchen.",
+        content: "Share your experience with Chaska.",
       },
     ],
   }),
@@ -177,7 +177,7 @@ function ReviewsPage() {
       <header className="max-w-2xl">
         <h1 className="font-display text-3xl font-semibold sm:text-4xl">Customer Reviews</h1>
         <p className="mt-2 text-muted-foreground">
-          See what our customers say about Zaika Cloud Kitchen, or share your own experience.
+          See what our customers say about Chaska, or share your own experience.
         </p>
       </header>
 

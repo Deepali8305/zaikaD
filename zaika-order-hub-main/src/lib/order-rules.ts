@@ -1,4 +1,4 @@
-/** Business rules for Zaika Cloud Kitchen ordering. */
+/** Business rules for Chaska ordering. */
 
 export const ORDER_START_MINUTES = 7 * 60 + 30; // 7:30 AM
 export const ORDER_END_MINUTES = 19 * 60; // 7:00 PM

@@ -2,15 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { useCart } from "@/lib/cart";
 import { formatCurrency } from "@/lib/order-rules";
 
-const NAV = [
+const NAV: { to: "/" | "/menu" | "/order"; label: string; hash?: string }[] = [
   { to: "/", label: "Home" },
+  { to: "/", hash: "about", label: "About" },
   { to: "/menu", label: "Menu" },
-  { to: "/cart", label: "Cart" },
   { to: "/order", label: "Order" },
-  { to: "/reviews", label: "Reviews" },
-  { to: "/contact", label: "Contact" },
-  { to: "/terms-and-conditions", label: "Terms & Conditions" },
-] as const;
+];
 
 export function SiteHeader() {
   const { count, total } = useCart();
@@ -18,12 +15,12 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-card/90 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2" aria-label="Zaika Cloud Kitchen home">
+        <Link to="/" className="flex items-center gap-2" aria-label="Chaska home">
           <span className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground font-display text-lg font-bold">
-            Z
+            C
           </span>
           <span className="leading-tight">
-            <span className="block font-display text-base font-semibold">Zaika</span>
+            <span className="block font-display text-base font-semibold">Chaska</span>
             <span className="block text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               Cloud Kitchen
             </span>
@@ -33,9 +30,12 @@ export function SiteHeader() {
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
           {NAV.map((item) => (
             <Link
-              key={item.to}
+              key={item.label}
               to={item.to}
-              activeProps={{ className: "bg-accent text-accent-foreground" }}
+              {...(item.hash ? { hash: item.hash } : {})}
+              {...(item.hash
+                ? {}
+                : { activeProps: { className: "bg-accent text-accent-foreground" } })}
               className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted"
             >
               {item.label}

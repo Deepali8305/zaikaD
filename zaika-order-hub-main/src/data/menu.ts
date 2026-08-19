@@ -45,6 +45,7 @@ export type CategoryId =
   | "snacks"
   | "veg"
   | "non-veg"
+  | "roti"
   | "rice-noodles";
 
 export type MenuItem = {
@@ -54,6 +55,12 @@ export type MenuItem = {
   /** null means the price has not been configured yet. */
   price: number | null;
   category: CategoryId;
+  /** Additional categories this item also appears in (e.g. a paratha shown in both Breakfast and Roti). */
+  alsoIn?: CategoryId[];
+  /** Sub-group heading used when rendering a category (e.g. "Veg Roti" within Roti). */
+  group?: string;
+  /** What the item includes, shown in the item details modal. */
+  included?: string[];
   image: string;
   available: boolean;
 };
@@ -64,14 +71,15 @@ export const CATEGORIES: { id: CategoryId; label: string }[] = [
   { id: "snacks", label: "Snacks" },
   { id: "veg", label: "Veg" },
   { id: "non-veg", label: "Non-Veg" },
+  { id: "roti", label: "Roti" },
   { id: "rice-noodles", label: "Rice & Noodles" },
 ];
 
 export const MENU: MenuItem[] = [
   // Breakfast
-  { id: "aloo-paratha", name: "Aloo Paratha", description: "2 Pieces + Curd", price: 100, category: "breakfast", image: alooParatha, available: true },
-  { id: "gobhi-paratha", name: "Gobhi Paratha", description: "2 Pieces + Curd", price: 130, category: "breakfast", image: gobhiParatha, available: true },
-  { id: "paneer-paratha", name: "Paneer Paratha", description: "2 Pieces + Curd", price: 150, category: "breakfast", image: paneerParatha, available: true },
+  { id: "aloo-paratha", name: "Aaloo Paratha", description: "2 Pieces + Curd", price: 100, category: "breakfast", alsoIn: ["roti"], group: "Parantha", included: ["2 Aaloo Parathas", "Curd"], image: alooParatha, available: true },
+  { id: "gobhi-paratha", name: "Gobhi Paratha", description: "2 Pieces + Curd", price: 130, category: "breakfast", alsoIn: ["roti"], group: "Parantha", included: ["2 Gobhi Parathas", "Curd"], image: gobhiParatha, available: true },
+  { id: "paneer-paratha", name: "Paneer Paratha", description: "2 Pieces + Curd", price: 150, category: "breakfast", alsoIn: ["roti"], group: "Parantha", included: ["2 Paneer Parathas", "Curd"], image: paneerParatha, available: true },
   { id: "omelette", name: "Omelette", description: "2 Eggs", price: 80, category: "breakfast", image: omelette, available: true },
   { id: "bread-toast", name: "Bread Toast", description: "4 Pieces + Butter Cube + Omelette", price: 100, category: "breakfast", image: breadToast, available: true },
   { id: "boiled-egg", name: "Boiled Egg", description: "Each", price: 40, category: "breakfast", image: boiledEgg, available: true },
@@ -102,14 +110,14 @@ export const MENU: MenuItem[] = [
   { id: "raita", name: "Raita", description: "Freshly prepared", price: 100, category: "veg", image: raita, available: true },
   { id: "curd-bowl", name: "Curd Bowl", description: "Fresh curd", price: 100, category: "veg", image: curdBowl, available: true },
   { id: "dal-fry", name: "Dal Fry", description: "Freshly prepared", price: 175, category: "veg", image: dalFry, available: true },
-  { id: "roti", name: "Roti", description: "Per piece", price: 15, category: "veg", image: roti, available: true },
-  { id: "paratha", name: "Paratha", description: "Per piece", price: 25, category: "veg", image: paratha, available: true },
+  { id: "roti", name: "Roti", description: "Per piece", price: 15, category: "veg", alsoIn: ["roti"], group: "Veg Roti", image: roti, available: true },
+  { id: "paratha", name: "Paratha", description: "Per piece", price: 25, category: "veg", alsoIn: ["roti"], group: "Veg Roti", image: paratha, available: true },
 
   // Non-Veg
   { id: "egg-curry", name: "Egg Curry", description: "2 Pieces", price: 150, category: "non-veg", image: eggCurry, available: true },
   { id: "chicken-masala", name: "Chicken Masala", description: "6 Pieces", price: 400, category: "non-veg", image: chickenMasala, available: true },
   { id: "non-veg-thali", name: "Non-Veg Thali", description: "Rice Bowl + Chicken (2 Pieces)", price: 250, category: "non-veg", image: nonvegThali, available: true },
-  { id: "chapati-chicken", name: "Chapati", description: "4 Pieces + Chicken (2 Pieces)", price: 200, category: "non-veg", image: chapatiChicken, available: true },
+  { id: "chapati-chicken", name: "Chapati", description: "4 Pieces + Chicken (2 Pieces)", price: 200, category: "non-veg", alsoIn: ["roti"], group: "Non-Veg Roti", image: chapatiChicken, available: true },
 
   // Rice & Noodles
   { id: "fried-rice", name: "Fried Rice", description: "Freshly prepared", price: 150, category: "rice-noodles", image: friedRice, available: true },

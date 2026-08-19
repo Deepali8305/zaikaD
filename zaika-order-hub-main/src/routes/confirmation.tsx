@@ -1,17 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { loadOrder, type PlacedOrder } from "@/lib/order-storage";
 import { formatCurrency, toWhatsAppNumber } from "@/lib/order-rules";
 
 export const Route = createFileRoute("/confirmation")({
   head: () => ({
     meta: [
-      { title: "Order Confirmed — Zaika Cloud Kitchen" },
+      { title: "Order Confirmed — Chaska" },
       {
         name: "description",
-        content: "Your Zaika Cloud Kitchen order invoice with items, total and serving time.",
+        content: "Your Chaska order invoice with items, total and serving time.",
       },
-      { property: "og:title", content: "Order Confirmed — Zaika Cloud Kitchen" },
+      { property: "og:title", content: "Order Confirmed — Chaska" },
       { property: "og:description", content: "Your order invoice and serving details." },
       { name: "robots", content: "noindex" },
     ],
@@ -25,7 +25,7 @@ function buildWhatsAppText(order: PlacedOrder) {
     order.orderType === "SAME_DAY"
       ? `Requested Serving Time:\n${order.scheduledTime} (today)`
       : `Scheduled Date: ${order.scheduledDate}\nScheduled Time: ${order.scheduledTime}`;
-  return `Your order from Zaika Cloud Kitchen has been confirmed.
+  return `Your order from Chaska has been confirmed.
 
 Order ID: ${order.orderId}
 
@@ -40,17 +40,32 @@ ${timing}
 
 Payment: ${order.paymentMethod} (${order.paymentStatus})
 
-Thank you for ordering from Zaika Cloud Kitchen.`;
+Thank you for ordering from Chaska.`;
 }
 
 function ConfirmationPage() {
   const [order, setOrder] = useState<PlacedOrder | null>(null);
   const [ready, setReady] = useState(false);
+  const autoOpenedRef = useRef(false);
 
   useEffect(() => {
     setOrder(loadOrder());
     setReady(true);
   }, []);
+
+  // Automatically open WhatsApp with the invoice as soon as the order is confirmed,
+  // so the invoice is ready to send to the customer's number right away.
+  useEffect(() => {
+    if (!order || autoOpenedRef.current) return;
+    autoOpenedRef.current = true;
+    const t = setTimeout(() => {
+      const link = `https://wa.me/${toWhatsAppNumber(order.phone)}?text=${encodeURIComponent(
+        buildWhatsAppText(order),
+      )}`;
+      window.open(link, "_blank", "noopener,noreferrer");
+    }, 1200);
+    return () => clearTimeout(t);
+  }, [order]);
 
   if (!ready) {
     return (
@@ -90,7 +105,7 @@ function ConfirmationPage() {
       <section className="card-surface mt-6 p-6">
         <header className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-4">
           <div>
-            <h2 className="font-display text-xl font-semibold">Zaika Cloud Kitchen</h2>
+            <h2 className="font-display text-xl font-semibold">Chaska</h2>
             <p className="text-sm text-muted-foreground">Order Invoice</p>
           </div>
           <div className="text-sm text-muted-foreground sm:text-right">
@@ -171,21 +186,27 @@ function ConfirmationPage() {
         </div>
       </section>
 
-      <div className="mt-6 flex flex-wrap gap-3 print:hidden">
-        <a
-          href={waLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-base btn-primary btn-primary-hover"
-        >
-          Send invoice to my WhatsApp
-        </a>
-        <button type="button" onClick={() => window.print()} className="btn-base btn-outline">
-          Print invoice
-        </button>
-        <Link to="/menu" className="btn-base btn-soft">
-          Order something else
-        </Link>
+      <div className="mt-6 space-y-3 print:hidden">
+        <p className="rounded-2xl border border-primary/30 bg-accent/60 p-3 text-sm text-muted-foreground">
+          We've opened WhatsApp with your invoice ready to send — just tap Send. If it didn't open,
+          use the button below.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a
+            href={waLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-base btn-primary btn-primary-hover"
+          >
+            Send invoice to my WhatsApp
+          </a>
+          <button type="button" onClick={() => window.print()} className="btn-base btn-outline">
+            Print invoice
+          </button>
+          <Link to="/menu" className="btn-base btn-soft">
+            Order something else
+          </Link>
+        </div>
       </div>
     </div>
   );

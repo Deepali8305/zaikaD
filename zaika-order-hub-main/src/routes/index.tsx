@@ -7,13 +7,13 @@ import { ImportantNotice } from "@/components/ImportantNotice";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Zaika Cloud Kitchen — Freshly Cooked Meals, Pre-Booked" },
+      { title: "Chaska — Freshly Cooked Meals, Pre-Booked" },
       {
         name: "description",
         content:
-          "Pre-book freshly prepared breakfast, thalis, curries, rice and noodles from Zaika Cloud Kitchen. Same-day orders supported with a 2-hour minimum serving time.",
+          "Pre-book freshly prepared breakfast, thalis, curries, rice and noodles from Chaska. Same-day orders supported with a 2-hour minimum serving time.",
       },
-      { property: "og:title", content: "Zaika Cloud Kitchen — Freshly Cooked Meals" },
+      { property: "og:title", content: "Chaska — Freshly Cooked Meals" },
       {
         property: "og:description",
         content:
@@ -48,7 +48,7 @@ function Home() {
               Freshly prepared meals, ready exactly when you need them
             </h1>
             <p className="mt-4 max-w-xl text-base text-muted-foreground">
-              Zaika Cloud Kitchen cooks every order fresh. Pre-book your meal for a later date, or
+              Chaska cooks every order fresh. Pre-book your meal for a later date, or
               place a same-day order with a minimum serving time of two hours.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -99,11 +99,11 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-surface py-14">
+      <section id="about" className="bg-surface py-14">
         <div className="container-page grid gap-8 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-2xl font-semibold sm:text-3xl">
-              About Zaika Cloud Kitchen
+              About Chaska
             </h2>
             <p className="mt-4 text-muted-foreground">
               We are a cloud kitchen focused on freshly cooked, home-style Indian food. There is no

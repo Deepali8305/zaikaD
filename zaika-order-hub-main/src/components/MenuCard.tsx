@@ -16,6 +16,7 @@ export function MenuCard({ item }: { item: MenuItem }) {
   const [localQty, setLocalQty] = useState(1);
   const [showFlyout, setShowFlyout] = useState(false);
   const [flyoutAnimation, setFlyoutAnimation] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   const orderable = item.available && item.price !== null;
   const displayQty = inCart ? cartQty : localQty;
@@ -80,12 +81,19 @@ export function MenuCard({ item }: { item: MenuItem }) {
         loading="lazy"
         width={768}
         height={576}
-        className="aspect-[4/3] w-full object-cover"
+        onClick={() => setShowDetails(true)}
+        className="aspect-[4/3] w-full cursor-pointer object-cover transition-opacity hover:opacity-90"
       />
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div>
           <div className="flex items-start justify-between gap-2">
-            <h3 className="text-base font-semibold">{item.name}</h3>
+            <h3
+              className="cursor-pointer text-base font-semibold hover:text-primary"
+              onClick={() => setShowDetails(true)}
+              title="View details"
+            >
+              {item.name}
+            </h3>
             {inCart && (
               <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-3">
@@ -162,6 +170,88 @@ export function MenuCard({ item }: { item: MenuItem }) {
           </button>
         )}
       </div>
+
+      {showDetails && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="item-details-title"
+          onClick={() => setShowDetails(false)}
+        >
+          <div
+            className="card-surface max-h-[90vh] w-full max-w-md overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={item.image}
+              alt={item.name}
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <div className="p-5">
+              <div className="flex items-start justify-between gap-3">
+                <h2 id="item-details-title" className="font-display text-xl font-semibold">
+                  {item.name}
+                </h2>
+                <button
+                  type="button"
+                  onClick={() => setShowDetails(false)}
+                  aria-label="Close details"
+                  className="grid size-8 shrink-0 place-items-center rounded-full hover:bg-muted"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5" aria-hidden="true">
+                    <path d="M18 6 6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              {item.description && (
+                <p className="mt-1 text-sm text-muted-foreground">{item.description}</p>
+              )}
+              <p className="mt-3 font-display text-lg font-semibold">
+                {item.price === null ? "Price on request" : formatCurrency(item.price)}
+              </p>
+
+              {item.included && item.included.length > 0 && (
+                <div className="mt-4 border-t border-border pt-4">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide">Included</h3>
+                  <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+                    {item.included.map((inc) => (
+                      <li key={inc} className="flex items-start gap-2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="m9 12 2 2 4-4" />
+                        </svg>
+                        <span>{inc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {orderable ? (
+                <button
+                  type="button"
+                  className="btn-base btn-primary btn-primary-hover mt-5 w-full"
+                  onClick={() => {
+                    handleAddToCart();
+                    setShowDetails(false);
+                  }}
+                >
+                  Add to Cart
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  className="btn-base btn-outline mt-5 w-full cursor-not-allowed opacity-60"
+                >
+                  Currently Unavailable
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </article>
   );
 }

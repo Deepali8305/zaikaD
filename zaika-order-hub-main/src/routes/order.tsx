@@ -22,19 +22,19 @@ import {
 } from "@/lib/order-rules";
 
 // ⚠️ REPLACE with your actual UPI ID and merchant name
-const UPI_ID = "zaikakitchen@upi";
-const UPI_NAME = "Zaika Cloud Kitchen";
+const UPI_ID = "chaska@upi";
+const UPI_NAME = "Chaska";
 
 export const Route = createFileRoute("/order")({
   head: () => ({
     meta: [
-      { title: "Place Your Order — Zaika Cloud Kitchen" },
+      { title: "Place Your Order — Chaska" },
       {
         name: "description",
         content:
-          "Place a same-day or pre-booked order with Zaika Cloud Kitchen. Orders accepted 7:30 AM to 7:00 PM; same-day serving takes a minimum of 2 hours.",
+          "Place a same-day or pre-booked order with Chaska. Orders accepted 7:30 AM to 7:00 PM; same-day serving takes a minimum of 2 hours.",
       },
-      { property: "og:title", content: "Place Your Order — Zaika Cloud Kitchen" },
+      { property: "og:title", content: "Place Your Order — Chaska" },
       {
         property: "og:description",
         content: "One simple form for same-day orders and pre-bookings.",
@@ -376,7 +376,7 @@ function OrderPage() {
                   <div className="flex flex-col items-center gap-2">
                     <img
                       src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(
-                        `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${total}&cu=INR&tn=${encodeURIComponent("Zaika Cloud Kitchen Order")}`
+                        `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${total}&cu=INR&tn=${encodeURIComponent("Chaska Order")}`
                       )}`}
                       alt="UPI QR Code"
                       width={180}

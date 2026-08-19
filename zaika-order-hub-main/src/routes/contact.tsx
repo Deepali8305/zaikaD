@@ -6,16 +6,16 @@ import { sendContactToSheet } from "@/lib/google-sheets";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — Zaika Cloud Kitchen" },
+      { title: "Contact Us — Chaska" },
       {
         name: "description",
         content:
-          "Get in touch with Zaika Cloud Kitchen. Find our location, call us, or send a message.",
+          "Get in touch with Chaska. Find our location, call us, or send a message.",
       },
-      { property: "og:title", content: "Contact Us — Zaika Cloud Kitchen" },
+      { property: "og:title", content: "Contact Us — Chaska" },
       {
         property: "og:description",
-        content: "Reach out to Zaika Cloud Kitchen for orders, queries, or feedback.",
+        content: "Reach out to Chaska for orders, queries, or feedback.",
       },
     ],
   }),
@@ -91,7 +91,7 @@ function ContactPage() {
             </svg>
           </span>
           <h3 className="mt-3 font-semibold">Phone</h3>
-          <p className="mt-1 text-sm text-muted-foreground">+91 98765 43210</p>
+          <p className="mt-1 text-sm text-muted-foreground">+91 8305994105</p>
           <p className="text-sm text-muted-foreground">Mon–Sun, 7:30 AM – 7:00 PM</p>
         </div>
 
@@ -103,7 +103,7 @@ function ContactPage() {
             </svg>
           </span>
           <h3 className="mt-3 font-semibold">Email</h3>
-          <p className="mt-1 text-sm text-muted-foreground">hello@zaikakitchen.com</p>
+          <p className="mt-1 text-sm text-muted-foreground">hello@chaska.com</p>
           <p className="text-sm text-muted-foreground">We reply within 24 hours</p>
         </div>
 
@@ -115,7 +115,7 @@ function ContactPage() {
             </svg>
           </span>
           <h3 className="mt-3 font-semibold">Location</h3>
-          <p className="mt-1 text-sm text-muted-foreground">Zaika Cloud Kitchen</p>
+          <p className="mt-1 text-sm text-muted-foreground">Chaska</p>
           <p className="text-sm text-muted-foreground">Bhopal, Madhya Pradesh</p>
         </div>
       </section>
@@ -125,7 +125,7 @@ function ContactPage() {
         {/* Map */}
         <div className="card-surface overflow-hidden">
           <iframe
-            title="Zaika Cloud Kitchen Location"
+            title="Chaska Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117251.56325598541!2d77.35096083716855!3d23.259338974498725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c428f8fd68fbd%3A0x2155716d572d4f8!2sBhopal%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
             width="100%"
             height="100%"

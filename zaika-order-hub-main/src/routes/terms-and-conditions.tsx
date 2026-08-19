@@ -8,16 +8,17 @@ import {
 export const Route = createFileRoute("/terms-and-conditions")({
   head: () => ({
     meta: [
-      { title: "Terms & Conditions — Zaika Cloud Kitchen" },
+      { title: "Terms & Conditions — Chaska" },
       {
         name: "description",
         content:
-          "Read the Terms & Conditions for ordering from Zaika Cloud Kitchen, including pre-booking, same-day orders, timing, payment, and privacy.",
+          "Read the Terms & Conditions for Chaska, including food safety, FSSAI compliance, ordering, pricing, payments, cancellations, privacy, DPDP, and GDPR.",
       },
-      { property: "og:title", content: "Terms & Conditions — Zaika Cloud Kitchen" },
+      { property: "og:title", content: "Terms & Conditions — Chaska" },
       {
         property: "og:description",
-        content: "The rules and policies that apply when you place an order with Zaika Cloud Kitchen.",
+        content:
+          "The rules and policies that apply when you browse the Chaska website or place an order.",
       },
     ],
   }),
@@ -30,22 +31,26 @@ type Section = {
   body: string[];
 };
 
+const LAST_UPDATED = "[DD/MM/YYYY]";
+
 const sections: Section[] = [
   {
     id: "introduction",
     title: "Introduction",
     body: [
-      "Welcome to Zaika Cloud Kitchen. These Terms & Conditions (“Terms”) govern your access to and use of this website and the ordering services we provide.",
-      "By browsing this website or placing an order, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please do not use our website or place an order.",
+      "These Terms & Conditions apply when you browse this website or place a food pre-booking or order with Chaska.",
+      "By using this website or submitting an order, you agree to these Terms & Conditions. Please read them carefully before ordering.",
+      "Chaska is a food pre-booking service and is not a food-delivery service. Food is pre-booked and served at the designated location; we do not provide home delivery, delivery partners, delivery tracking or delivery charges.",
     ],
   },
   {
-    id: "pre-booking-and-ordering",
+    id: "pre-booking-ordering",
     title: "Pre-Booking and Ordering",
     body: [
-      "Zaika Cloud Kitchen is primarily a pre-booking food ordering service. Same-day orders are also supported.",
-      "Pre-bookings are scheduled orders placed for a future date. To place a pre-booking, please select a valid future date and a serving/delivery time from the available slots.",
-      "When you place an order, you confirm that all information provided by you is accurate and complete.",
+      "Chaska primarily offers food pre-booking. To pre-book a meal, select a valid date and an available serving time through the order form.",
+      "Same-day orders are also supported.",
+      "All orders are placed through the single order form available on this website.",
+      "Food is served at the designated farmhouse/location at the date and serving time you have selected.",
     ],
   },
   {
@@ -53,7 +58,8 @@ const sections: Section[] = [
     title: "Order Timing",
     body: [
       ORDER_WINDOW_TEXT,
-      "Orders can only be placed within this window. No orders can be submitted outside these hours.",
+      "No orders can be submitted outside these hours.",
+      "Orders may be scheduled for a future date (pre-booking) or for the same day, subject to the serving-time rules below.",
     ],
   },
   {
@@ -61,91 +67,127 @@ const sections: Section[] = [
     title: "Same-Day Orders",
     body: [
       `Same-day orders require a minimum serving time of ${SAME_DAY_MIN_LEAD_MINUTES / 60} hours.`,
-      "Depending on the selected food item and availability, your order may be ready earlier than the minimum serving time. We will do our best to serve your order as soon as it is ready.",
+      "Depending on the selected food item and availability, the order may be served earlier. We will do our best to serve your order as soon as it is ready.",
     ],
   },
   {
-    id: "menu-and-pricing",
+    id: "menu-pricing",
     title: "Menu and Pricing",
     body: [
-      "All food items, images, descriptions, and prices shown on the menu are subject to change without prior notice.",
-      "Prices are displayed in Indian Rupees (₹). The total payable amount is shown in your order summary before you submit your order.",
-      "For items where a price is not shown, the price is provided on request.",
+      "Menu items, descriptions and prices may change from time to time without prior notice.",
+      "The applicable price at the time the order is confirmed will generally apply.",
+      "The final payable amount will be shown to you before you submit your order.",
+      "Images on the menu are for representation purposes unless stated otherwise.",
     ],
   },
   {
     id: "food-availability",
     title: "Food Availability",
     body: [
-      "Menu items are subject to availability. If an item you have ordered is unavailable, we will contact you to offer a suitable alternative or adjust your order accordingly.",
-      "We reserve the right to limit quantities and to refuse or cancel an order at our discretion.",
+      "Food items are subject to availability.",
+      "If an ordered item becomes unavailable, we may contact you to suggest an alternative or to adjust your order.",
     ],
   },
   {
     id: "customer-information",
     title: "Customer Information",
     body: [
-      "To place an order, we require your name, a valid WhatsApp mobile number, and an email address.",
-      "You agree to provide accurate, current, and complete information. We may use the provided contact details to confirm your order and share order updates.",
+      "When placing an order, you must provide accurate information, including your name, WhatsApp/mobile number and email address.",
+      "These details may be used for order confirmation, issuing your invoice and order-related communication.",
     ],
   },
   {
     id: "order-confirmation",
     title: "Order Confirmation",
     body: [
-      "Your order is considered placed only after you have accepted the Terms & Conditions and submitted the order through the order form.",
-      "After submission, an order confirmation with an invoice is generated and shared with you on the WhatsApp number you provided.",
-      "Please review your order details carefully before confirming and submitting.",
+      "Before submitting an order, please check all order details, including the items, date, serving time and total amount.",
+      "An order is treated as submitted once you have reviewed the order summary, agreed to these Terms & Conditions and confirmed submission through the order form.",
+      "An order becomes confirmed when it is accepted and confirmed by Chaska. The order confirmation and invoice will be sent using the contact details you provided.",
     ],
   },
   {
     id: "payment",
     title: "Payment",
     body: [
-      "We offer online payment via UPI and cash on delivery. The available payment methods are shown on the order form.",
-      "For UPI payments, please complete the payment using the provided QR code or UPI ID and share the payment confirmation on WhatsApp for faster order confirmation.",
-      "An order is considered confirmed for preparation once the order is submitted and, where applicable, payment is received.",
+      "The following payment methods are currently available on this website: UPI (online) and Cash Payment.",
+      "For UPI (online) payment, a QR code is shown during checkout. Scan it with any UPI app (such as Google Pay, PhonePe or Paytm) to complete payment, then share the payment screenshot via WhatsApp for faster confirmation.",
+      "Chaska does not store complete payment card details unless specifically required and lawfully permitted.",
+      "Customers must not provide confidential payment credentials through the order form, email, WhatsApp or other communication channels.",
     ],
   },
   {
-    id: "cancellation-and-refund",
+    id: "cancellation",
     title: "Cancellation and Refund",
     body: [
-      "Cancellation and refund policies may vary depending on the stage of your order. For cancellation or refund requests, please contact us using the details provided in the Contact section.",
-      "Refunds, where applicable, will be processed to the original payment method. Please allow reasonable time for the refund to reflect in your account.",
+      "You may request cancellation of an order by contacting Chaska using the contact details provided below.",
+      "Cancellation is subject to the stage of order preparation.",
+      "Once order preparation has started, cancellation may not be possible except where required by applicable law or approved by Chaska.",
+      "Refund eligibility depends on the applicable cancellation rules in effect at the time of the request.",
+      "Where a refund is approved, it will be processed through the original payment method.",
+      "Any specific cancellation window or refund amount, if applicable, will be stated here once confirmed: [Cancellation/refund details to be updated].",
     ],
   },
   {
-    id: "privacy-and-data-protection",
+    id: "privacy",
     title: "Privacy and Data Protection",
     body: [
-      "We respect your privacy. The information you provide while placing an order is used only to process and deliver your order and to communicate order-related updates.",
-      "We do not sell your personal information to third parties. Your data is handled with reasonable security measures.",
-      "For more details on how your information is handled, please refer to our privacy practices or contact us.",
+      "Chaska collects personal information that is necessary to process and manage your order, such as your name, WhatsApp/mobile number, email address, order details, date and serving time.",
+      "This information is collected and used for order processing and order-related communication, including order confirmation and sending your invoice.",
+      "Personal information is not sold to third parties.",
+      "We use reasonable security measures to protect personal information against unauthorised access, disclosure, alteration, loss or misuse.",
+      "To the extent applicable, we handle digital personal data in accordance with the Digital Personal Data Protection Act, 2023 (DPDP Act) and other applicable data protection requirements.",
+      "Depending on the circumstances, you may have rights relating to your personal data, including the right to access, correct or request deletion of your information, and to raise a grievance.",
+      "You may contact us regarding your personal information and applicable privacy rights using the contact details provided below.",
+    ],
+  },
+  {
+    id: "gdpr",
+    title: "GDPR (Where Applicable)",
+    body: [
+      "The General Data Protection Regulation (GDPR) applies only where it is applicable to our processing of your personal data. We do not claim that this website is fully GDPR compliant unless this has been legally verified.",
+      "Where GDPR applies, you may have relevant privacy rights, including rights to access, rectify, erase or restrict processing of your personal data, and to object to certain processing.",
+      "You may contact us regarding privacy requests using the contact details provided below.",
+    ],
+  },
+  {
+    id: "fssai",
+    title: "Food Safety and FSSAI Compliance",
+    body: [
+      "Chaska operates in accordance with applicable food safety and hygiene requirements under the Food Safety and Standards Act, 2006 and applicable FSSAI regulations.",
+      "The FSSAI License/Registration number, when displayed, will be the valid number belonging to the applicable Food Business Operator.",
     ],
   },
   {
     id: "policy-changes",
     title: "Policy Changes",
     body: [
-      "We may update these Terms & Conditions from time to time. Any changes will be reflected on this page with an updated effective date.",
-      "Your continued use of this website after any changes indicates your acceptance of the revised Terms.",
+      "Chaska may update these Terms & Conditions from time to time.",
+      `The latest version will be published on this website with a revised "Last Updated" date (Last updated: ${LAST_UPDATED}).`,
     ],
   },
   {
-    id: "contact-information",
+    id: "contact",
     title: "Contact Information",
     body: [
-      "If you have any questions, concerns, or feedback regarding these Terms & Conditions or your order, please get in touch with us using the Contact page.",
+      "For questions, complaints, order-related issues or privacy requests, you may contact Chaska at:",
+      "Business Name: Chaska",
       "Phone Number: [To be updated]",
       "Email: [To be updated]",
       "Address: [To be updated]",
       "FSSAI License Number: [To be updated]",
-      "Company / Registration Details: [To be updated]",
+      "Company/Registration Details: [To be updated]",
+      "We will make reasonable efforts to review and respond to your queries within a reasonable time.",
+    ],
+  },
+  {
+    id: "governing-law",
+    title: "Governing Law",
+    body: [
+      "These Terms & Conditions will be governed by the applicable laws of India.",
+      "Any disputes will be subject to the jurisdiction of the competent courts/authorities as applicable.",
     ],
   },
 ];
-
 function TermsAndConditionsPage() {
   return (
     <div className="pb-24 md:pb-0">
@@ -160,7 +202,7 @@ function TermsAndConditionsPage() {
           </h1>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
             These Terms &amp; Conditions apply when you browse this website or place an order with
-            Zaika Cloud Kitchen. Please read them carefully before ordering.
+            Chaska. Please read them carefully before ordering.
           </p>
           <p className="mx-auto mt-4 max-w-2xl rounded-2xl border border-primary/30 bg-accent/60 p-4 text-sm text-foreground">
             {IMPORTANT_NOTICE}

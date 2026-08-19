@@ -6,13 +6,13 @@ import { MenuCard } from "@/components/MenuCard";
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
-      { title: "Menu — Zaika Cloud Kitchen" },
+      { title: "Menu — Chaska" },
       {
         name: "description",
         content:
-          "Browse the Zaika Cloud Kitchen menu: breakfast, beverages, snacks, veg, non-veg, rice and noodles, freshly prepared to order.",
+          "Browse the Chaska menu: breakfast, beverages, snacks, veg, non-veg, rice and noodles, freshly prepared to order.",
       },
-      { property: "og:title", content: "Menu — Zaika Cloud Kitchen" },
+      { property: "og:title", content: "Menu — Chaska" },
       {
         property: "og:description",
         content: "Freshly prepared breakfast, thalis, curries, rice and noodles.",
@@ -24,7 +24,12 @@ export const Route = createFileRoute("/menu")({
 
 function MenuPage() {
   const [active, setActive] = useState<CategoryId>("breakfast");
-  const items = MENU.filter((item) => item.category === active);
+  const items = MENU.filter(
+    (item) => item.category === active || (item.alsoIn ?? []).includes(active),
+  );
+
+  // Sub-groups shown within the Roti category for a clear structure.
+  const rotiGroups: string[] = ["Veg Roti", "Non-Veg Roti", "Parantha"];
 
   return (
     <div className="container-page py-10 pb-28 md:pb-16">
@@ -57,11 +62,34 @@ function MenuPage() {
         ))}
       </div>
 
-      <section className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {items.map((item) => (
-          <MenuCard key={item.id} item={item} />
-        ))}
-      </section>
+      {active === "roti" ? (
+        <div className="mt-8 space-y-8">
+          {rotiGroups.map((group) => {
+            const groupItems = items.filter((item) => item.group === group);
+            if (groupItems.length === 0) return null;
+            return (
+              <div key={group}>
+                <h2 className="font-display text-lg font-semibold">{group}</h2>
+                <div className="mt-3 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {groupItems.map((item) => (
+                    <MenuCard key={item.id} item={item} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+          {/* Any roti item without a sub-group is still shown. */}
+          {items.filter((item) => !item.group).map((item) => (
+            <MenuCard key={item.id} item={item} />
+          ))}
+        </div>
+      ) : (
+        <section className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {items.map((item) => (
+            <MenuCard key={item.id} item={item} />
+          ))}
+        </section>
+      )}
     </div>
   );
 }

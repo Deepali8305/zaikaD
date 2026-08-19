@@ -75,13 +75,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Zaika Cloud Kitchen" },
+      { title: "Chaska" },
       {
         name: "description",
         content:
-          "Zaika Cloud Kitchen — freshly prepared meals for pre-booking and same-day ordering.",
+          "Chaska — freshly prepared meals for pre-booking and same-day ordering.",
       },
-      { property: "og:title", content: "Zaika Cloud Kitchen" },
+      { property: "og:title", content: "Chaska" },
       {
         property: "og:description",
         content: "Freshly prepared meals for pre-booking and same-day ordering.",

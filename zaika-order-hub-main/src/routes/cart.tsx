@@ -5,12 +5,12 @@ import { formatCurrency } from "@/lib/order-rules";
 export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
-      { title: "Your Cart — Zaika Cloud Kitchen" },
+      { title: "Your Cart — Chaska" },
       {
         name: "description",
-        content: "Review the items in your Zaika Cloud Kitchen cart before placing your order.",
+        content: "Review the items in your Chaska cart before placing your order.",
       },
-      { property: "og:title", content: "Your Cart — Zaika Cloud Kitchen" },
+      { property: "og:title", content: "Your Cart — Chaska" },
       { property: "og:description", content: "Review your items and proceed to order." },
     ],
   }),

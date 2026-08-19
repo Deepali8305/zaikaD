@@ -10,17 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CancellationRefundRouteImport } from './routes/cancellation-refund'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as ConfirmationRouteImport } from './routes/confirmation'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as DpdpaRouteImport } from './routes/dpdpa'
+import { Route as GdprRouteImport } from './routes/gdpr'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as OrderRouteImport } from './routes/order'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CancellationRefundRoute = CancellationRefundRouteImport.update({
+  id: '/cancellation-refund',
+  path: '/cancellation-refund',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CartRoute = CartRouteImport.update({
@@ -38,6 +49,26 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CookiePolicyRoute = CookiePolicyRouteImport.update({
+  id: '/cookie-policy',
+  path: '/cookie-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DpdpaRoute = DpdpaRouteImport.update({
+  id: '/dpdpa',
+  path: '/dpdpa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GdprRoute = GdprRouteImport.update({
+  id: '/gdpr',
+  path: '/gdpr',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
@@ -46,6 +77,11 @@ const MenuRoute = MenuRouteImport.update({
 const OrderRoute = OrderRouteImport.update({
   id: '/order',
   path: '/order',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReviewsRoute = ReviewsRouteImport.update({
@@ -61,32 +97,50 @@ const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cancellation-refund': typeof CancellationRefundRoute
   '/cart': typeof CartRoute
   '/confirmation': typeof ConfirmationRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/dpdpa': typeof DpdpaRoute
+  '/gdpr': typeof GdprRoute
   '/menu': typeof MenuRoute
   '/order': typeof OrderRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/reviews': typeof ReviewsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cancellation-refund': typeof CancellationRefundRoute
   '/cart': typeof CartRoute
   '/confirmation': typeof ConfirmationRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/dpdpa': typeof DpdpaRoute
+  '/gdpr': typeof GdprRoute
   '/menu': typeof MenuRoute
   '/order': typeof OrderRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/reviews': typeof ReviewsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cancellation-refund': typeof CancellationRefundRoute
   '/cart': typeof CartRoute
   '/confirmation': typeof ConfirmationRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/dpdpa': typeof DpdpaRoute
+  '/gdpr': typeof GdprRoute
   '/menu': typeof MenuRoute
   '/order': typeof OrderRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/reviews': typeof ReviewsRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
 }
@@ -94,42 +148,66 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cancellation-refund'
     | '/cart'
     | '/confirmation'
     | '/contact'
+    | '/cookie-policy'
+    | '/disclaimer'
+    | '/dpdpa'
+    | '/gdpr'
     | '/menu'
     | '/order'
+    | '/privacy-policy'
     | '/reviews'
     | '/terms-and-conditions'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cancellation-refund'
     | '/cart'
     | '/confirmation'
     | '/contact'
+    | '/cookie-policy'
+    | '/disclaimer'
+    | '/dpdpa'
+    | '/gdpr'
     | '/menu'
     | '/order'
+    | '/privacy-policy'
     | '/reviews'
     | '/terms-and-conditions'
   id:
     | '__root__'
     | '/'
+    | '/cancellation-refund'
     | '/cart'
     | '/confirmation'
     | '/contact'
+    | '/cookie-policy'
+    | '/disclaimer'
+    | '/dpdpa'
+    | '/gdpr'
     | '/menu'
     | '/order'
+    | '/privacy-policy'
     | '/reviews'
     | '/terms-and-conditions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CancellationRefundRoute: typeof CancellationRefundRoute
   CartRoute: typeof CartRoute
   ConfirmationRoute: typeof ConfirmationRoute
   ContactRoute: typeof ContactRoute
+  CookiePolicyRoute: typeof CookiePolicyRoute
+  DisclaimerRoute: typeof DisclaimerRoute
+  DpdpaRoute: typeof DpdpaRoute
+  GdprRoute: typeof GdprRoute
   MenuRoute: typeof MenuRoute
   OrderRoute: typeof OrderRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ReviewsRoute: typeof ReviewsRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
 }
@@ -141,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cancellation-refund': {
+      id: '/cancellation-refund'
+      path: '/cancellation-refund'
+      fullPath: '/cancellation-refund'
+      preLoaderRoute: typeof CancellationRefundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cart': {
@@ -164,6 +249,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cookie-policy': {
+      id: '/cookie-policy'
+      path: '/cookie-policy'
+      fullPath: '/cookie-policy'
+      preLoaderRoute: typeof CookiePolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dpdpa': {
+      id: '/dpdpa'
+      path: '/dpdpa'
+      fullPath: '/dpdpa'
+      preLoaderRoute: typeof DpdpaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gdpr': {
+      id: '/gdpr'
+      path: '/gdpr'
+      fullPath: '/gdpr'
+      preLoaderRoute: typeof GdprRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/menu': {
       id: '/menu'
       path: '/menu'
@@ -176,6 +289,13 @@ declare module '@tanstack/react-router' {
       path: '/order'
       fullPath: '/order'
       preLoaderRoute: typeof OrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reviews': {
@@ -197,11 +317,17 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CancellationRefundRoute: CancellationRefundRoute,
   CartRoute: CartRoute,
   ConfirmationRoute: ConfirmationRoute,
   ContactRoute: ContactRoute,
+  CookiePolicyRoute: CookiePolicyRoute,
+  DisclaimerRoute: DisclaimerRoute,
+  DpdpaRoute: DpdpaRoute,
+  GdprRoute: GdprRoute,
   MenuRoute: MenuRoute,
   OrderRoute: OrderRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   ReviewsRoute: ReviewsRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
 }
